@@ -1,10 +1,9 @@
 
-
-typedef int *tensor_t;
+#include "layer.h"
 
 typedef struct net
 {
-    layer *p_layer;
+    layer_t *p_layer;
     int number_of_layers;
 } net;
 
@@ -12,4 +11,4 @@ typedef struct net
     # Create layers
     # Map inputs
  */
-net *create_net(tensor_t inputs, tensor_t outputs, int input_size, int output_size, int number_of_neurons, int number_of_layers);
+net *create_net(tensor_t inputs, tensor_t outputs, int number_of_neurons, int number_of_layers);

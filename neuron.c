@@ -1,19 +1,30 @@
 
+#include <stdlib.h> 
 #include "neuron.h"
+#include "dbg.h"
 
-
+/* Private functions */
+static void set_weights();
 
 /* This function will need to :
+    # Create neuron
+    # malloc the weights
     # Map inputs
-    # Alloc the weights
     # Assign weights some value
     # Asign the activation function
-    # Alloc the outputs
     # Maybe add to task/ or the net could do this    
  */
-neuron *create_neuron(tensor_t input, tensor_t output, int input_size, int output_size)
+neuron_t *create_neuron(tensor_t *input)
 {
+    neuron_t *p_neuron = malloc(sizeof(neuron_t));
+    
+    // Setup the input
+    p_neuron->p_input = input;
 
+    // Configure the weights
+    p_neuron->weights.amount = input->amount;
+    set_weights(&p_neuron->weights);
+    return p_neuron;
 }
 
 /* This function will need to :
@@ -22,4 +33,32 @@ neuron *create_neuron(tensor_t input, tensor_t output, int input_size, int outpu
     # Use the activation function on sum
     # store that value in output 
  */
-neuron *run_neuron();
+neuron_t run_neuron(neuron_t **p_neuron)
+{
+    neuron_t *tmp = *p_neuron;
+    
+    for(int i=0; i<tmp->p_input->amount; i++)
+    {
+        // Multiply the weights and input.
+        tmp->sum += *tmp->p_input->tensor * *tmp->weights.tensor;
+        tmp->p_input->tensor++;
+        tmp->weights.tensor++;
+    }
+
+    // Move sum to the output as there is no activation right now.
+    // TODO add activation
+    tmp->output = tmp->sum;
+}
+
+/* Sets weights to 2 for now */
+void set_weights(tensor_t *weights)
+{
+    weights->tensor = malloc(sizeof(uint8_t)*weights->amount);
+
+    uint8_t *tmp = weights->tensor; 
+    for(int i=0; i<weights->amount; i++)
+    {
+        *tmp = 2;
+        tmp++;
+    }
+}

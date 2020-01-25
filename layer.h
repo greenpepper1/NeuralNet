@@ -1,15 +1,13 @@
+#include "neuron.h"
 
-
-typedef int *tensor_t;
-
-typedef struct layer
+typedef struct layer_t
 {
-    neuron *p_neuron;
+    neuron_t *p_neuron;
     int number_of_neuron;
-} layer;
+} layer_t;
 
 /* This function will need to :
     # Create neurons
     # Map inputs
  */
-layer *create_layer(tensor_t inputs, tensor_t outputs, int input_size, int output_size, int number_of_neurons);
+layer_t *create_layer(tensor_t *inputs, tensor_t *outputs, int number_of_neurons);
