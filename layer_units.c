@@ -29,7 +29,9 @@ bool check_layer()
     neuron_t **neurons = layer->p_neuron;
     run_neuron(*neurons);
     debug("output %d ", (*neurons)->output);
+    check((*neurons)->output == 14, "output is wrong")
 
+    debug("neurons(%p) ", (*neurons));
     neurons++;
     debug("neurons(%p) ", (*neurons));
 
@@ -37,5 +39,7 @@ bool check_layer()
     debug("output %d ", (*neurons)->output);
 
     check(layer->number_of_neurons == number_of_neurons, "Number of neurons is wrong")
+    check((*neurons)->output == 14, "output is wrong")
+
     debug("check_layer complete");
 }

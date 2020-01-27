@@ -13,7 +13,6 @@ layer_t *create_layer(tensor_t *inputs, int number_of_neurons)
     for(int i=0; i<number_of_neurons; i++)
     {
         *tmp = create_neuron(&inputs);
-        debug("tmp(%p) ", (*tmp));
         tmp++;
     }
     return layer;

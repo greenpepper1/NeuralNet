@@ -19,7 +19,6 @@ static void create_weights();
 neuron_t *create_neuron(tensor_t **input)
 {
     neuron_t *p_neuron = malloc(sizeof(neuron_t));
-    debug("create_neuron() input(%p)", *input);
     
     // Setup the input
     p_neuron->p_input = *input;
