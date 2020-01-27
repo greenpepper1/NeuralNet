@@ -36,7 +36,7 @@ bool check_weight()
     debug("cell->output %d",cell->output);
     check(cell->output == 20, "wrong output");
 
-    edit_weights(cell, 2, 5);
+    edit_weight(cell, 2, 5);
     run_neuron(cell);
     debug("weights %d, %d, %d, %d", cell->weights.tensor[0], cell->weights.tensor[1], cell->weights.tensor[2], cell->weights.tensor[3]);
     debug("cell->output %d",cell->output);
