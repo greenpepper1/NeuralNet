@@ -3,8 +3,10 @@
 #include "neuron.h"
 #include "dbg.h"
 
+#define DEFAULT_WEIGHT 2
+
 /* Private functions */
-static void set_weights();
+static void create_weights();
 
 /* This function will need to :
     # Create neuron
@@ -24,7 +26,7 @@ neuron_t *create_neuron(tensor_t **input)
 
     // Configure the weights
     p_neuron->weights.amount = (*input)->amount;
-    set_weights(&p_neuron->weights);
+    create_weights(&p_neuron->weights);
     return p_neuron;
 }
 
@@ -54,15 +56,31 @@ neuron_t run_neuron(neuron_t *p_neuron)
     p_neuron->output = p_neuron->sum;
 }
 
+/* Change the weight to an input value*/
+bool edit_weight(neuron_t *p_neuron, uint8_t weight, uint8_t value)
+{
+    if(weight > p_neuron->weights.amount)
+    {
+        log_err("Setting a weight value that doesnt exist.");
+        return false;
+    }
+    check(weight < p_neuron->weights.amount, "Setting a weight that doesnt exist")
+    
+    uint8_t *tmp_weight = p_neuron->weights.tensor;
+    tmp_weight += weight;
+    *tmp_weight = value; 
+    return true;
+}
+
 /* Sets weights to 2 for now */
-void set_weights(tensor_t *weights)
+void create_weights(tensor_t *weights)
 {
     weights->tensor = malloc(sizeof(uint8_t)*weights->amount);
 
     uint8_t *tmp_weight = weights->tensor; 
     for(int i=0; i<weights->amount; i++)
     {
-        *tmp_weight = 2;
+        *tmp_weight = DEFAULT_WEIGHT;
         tmp_weight++;
     }
 }

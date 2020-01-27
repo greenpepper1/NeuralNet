@@ -2,6 +2,7 @@
 #define __neuron_h__
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "tensor.h"
 
 typedef struct neuron_t
@@ -30,5 +31,10 @@ neuron_t *create_neuron(tensor_t **input);
     # store that value in output 
  */
 neuron_t run_neuron(neuron_t *p_neuron);
+
+/* This function will need to :
+    # Change the value of the weight given
+ */
+bool edit_weight(neuron_t *p_neuron, uint8_t weight, uint8_t value);
 
 #endif
