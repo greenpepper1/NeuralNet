@@ -1,3 +1,5 @@
+#ifndef __neuron_h__
+#define __neuron_h__
 
 #include <stdint.h>
 #include "tensor.h"
@@ -19,7 +21,7 @@ typedef struct neuron_t
     # Alloc the outputs
     # Maybe add to task/ or the net could do this    
  */
-neuron_t *create_neuron(tensor_t *input);
+neuron_t *create_neuron(tensor_t **input);
 
 /* This function will need to :
     # Multiply the inputs by the weights
@@ -27,4 +29,6 @@ neuron_t *create_neuron(tensor_t *input);
     # Use the activation function on sum
     # store that value in output 
  */
-neuron_t run_neuron(neuron_t **p_neuron);
+neuron_t run_neuron(neuron_t *p_neuron);
+
+#endif
