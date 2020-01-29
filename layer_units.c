@@ -22,24 +22,25 @@ bool check_layer()
     input.amount = 4;
     input.tensor = data;
     uint8_t number_of_neurons = 2;
-
     debug("Setup complete");
+
 
     layer_t *layer = create_layer(&input, number_of_neurons);
     neuron_t **neurons = layer->p_neuron;
     run_neuron(*neurons);
-    debug("output %d ", (*neurons)->output);
-    check((*neurons)->output == 14, "output is wrong")
+    debug("output %d ", *layer->output);
+    check(*layer->output == 14, "output is wrong")
 
     debug("neurons(%p) ", (*neurons));
     neurons++;
     debug("neurons(%p) ", (*neurons));
 
     run_neuron(*neurons);
-    debug("output %d ", (*neurons)->output);
+    layer->output++; // look at next output
+    debug("output %d ", *layer->output);
 
     check(layer->number_of_neurons == number_of_neurons, "Number of neurons is wrong")
-    check((*neurons)->output == 14, "output is wrong")
+    check(*layer->output == 14, "output is wrong")
 
     debug("check_layer complete");
 }

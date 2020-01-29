@@ -16,12 +16,13 @@ static void create_weights();
     # Asign the activation function
     # Maybe add to task/ or the net could do this    
  */
-neuron_t *create_neuron(tensor_t **input)
+neuron_t *create_neuron(tensor_t **input, uint8_t *output)
 {
     neuron_t *p_neuron = malloc(sizeof(neuron_t));
     
-    // Setup the input
+    // Setup the input/output
     p_neuron->p_input = *input;
+    p_neuron->output = output;
 
     // Configure the weights
     p_neuron->weights.amount = (*input)->amount;
@@ -52,7 +53,7 @@ neuron_t run_neuron(neuron_t *p_neuron)
 
     // Move sum to the output as there is no activation right now.
     // TODO add activation
-    p_neuron->output = p_neuron->sum;
+    *p_neuron->output = p_neuron->sum;
 }
 
 /* Change the weight to an input value*/

@@ -11,7 +11,7 @@ typedef struct neuron_t
     tensor_t weights;
     uint8_t sum;
     void * activation_function;
-    uint8_t output;
+    uint8_t *output;
 } neuron_t;
 
 /* This function will need to :
@@ -22,7 +22,7 @@ typedef struct neuron_t
     # Alloc the outputs
     # Maybe add to task/ or the net could do this    
  */
-neuron_t *create_neuron(tensor_t **input);
+neuron_t *create_neuron(tensor_t **input, uint8_t *output);
 
 /* This function will need to :
     # Multiply the inputs by the weights
