@@ -8,7 +8,7 @@
 layer_t *create_layer(tensor_t *inputs, uint8_t number_of_neurons)
 {
     layer_t *layer = malloc(sizeof(layer_t));
-    layer->p_neuron = malloc(sizeof(neuron_t)*number_of_neurons);
+    layer->p_neuron = malloc(sizeof(neuron_t)*number_of_neurons); // We have this and a malloc p_neron?
     layer->output = malloc(sizeof(uint8_t)*number_of_neurons);
 
     layer->number_of_neurons = number_of_neurons;
